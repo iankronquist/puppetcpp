@@ -1,0 +1,17 @@
+language: cpp
+
+before_script:
+  - sudo apt-get update -y
+  - sudo apt-get -yq --no-install-suggests --no-install-recommends --force-yes install libboost-dev libyaml-0-2 cppcheck
+  - curl http://www.cmake.org/files/v3.3/cmake-3.3.1-Linux-x86_64.sh
+  - bash cmake-3.3.1-Linux-x86_64.sh --skip-license
+script:
+  - cppcheck lib
+  - mkdir release
+  - cd release
+  - cmake ..
+  - make test
+
+compile:
+  - clang
+  - gcc
